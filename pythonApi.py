@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import requests
 import mysql.connector
 
@@ -24,10 +26,12 @@ connection = mysql.connector.connect(
 
 # Se guarda en 'cursor' la conexión para poder ser llamada cuando se requiera.
 cursor = connection.cursor()
+print("conexión a BD. en proceso...")
 
 # Crear base de datos en caso de no existir.
 cursor.execute("CREATE DATABASE IF NOT EXISTS api_python")
 cursor.execute("USE api_python")
+print("Base de Datos generada correctamente.")
 
 # Crear tabla en caso de no existir con los campos referidos.
 cursor.execute("""
@@ -37,6 +41,8 @@ CREATE TABLE IF NOT EXISTS datos (
     status VARCHAR(255)
 )
 """)
+print("Tabla 'datos' generada correctamente.")
+
  # Se realiza bucle for para obtener los datos del .json y poder registrarlo en la tabla 'datos'.
 for char in data:
   id = char.get('id')
@@ -44,13 +50,14 @@ for char in data:
   status = char.get('status')
   
   # Se ingresan la información obtenida en el bucle en la tabla 'datos'.
-  sql = "INSERT INTO datos (id, name, status) VALUES (%s, %s, %s)"
-  datosChar = (id, name, status)
+  sql = "INSERT INTO datos (name, status) VALUES (%s, %s)"
+  datosChar = (name, status)
   cursor.execute(sql, datosChar)
+  
 
 # verifica la correcta ejecución de los cambios solicitados.
 connection.commit()
-
+print("Inserción de Datos exitoso !!!")
 # Cerrar la conexión y el cursor.
 cursor.close()
 connection.close()
