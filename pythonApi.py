@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# 'requests' => librería que facilita las peticiones HTTP, sirve para realizar solicitudes HTTP.
 import requests
+
+# 'mysql.connector' => módulo de python que permite conectarte y comunicarte con BD. mysql.
 import mysql.connector
 
 
@@ -8,15 +12,20 @@ import mysql.connector
 url = "https://rickandmortyapi.com/api/character/"
 
 # Realizar la solicitud GET para traer los datos registrados en la URL.
+# 'requests' es un paquete al cual se le puede hacer consultas de tipo 'HTTP'.
+# 'get' sirve realizar una petición al sitio seleccionado.
 response = requests.get(url)
 
-# Verificar si la solicitud fue exitosa mediante codigo igualado a 200 
-# de lo obtenido solo nos interesa el array results ya que es donde se encuentran los datos de los personaes.
+
+# Verificar si la solicitud fue exitosa mediante codigo de estado de respuesta HTTP 200 
+# De lo obtenido solo nos interesa el array results ya que es donde se encuentran los datos de los personajes. (status_code = código de estado de respuesta HTTP)
+# .json => formato de datos basado en texto, sirve para transmitir datos a través de una red.
 if response.status_code == 200: 
     data = response.json()["results"]
     
     
 # Conectar a MySQL pasando los parámetros para poder realizarla.
+# Se utiliza el método 'mysql.connector.connect()'
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
@@ -25,6 +34,8 @@ connection = mysql.connector.connect(
 )
 
 # Se guarda en 'cursor' la conexión para poder ser llamada cuando se requiera.
+# Se genera un objeto cursor el cual nos permite interactuar con BD. permitiendonos realizar
+# consultas, insertar datos, actualizar registros, etc.
 cursor = connection.cursor()
 print("conexión a BD. en proceso...")
 
