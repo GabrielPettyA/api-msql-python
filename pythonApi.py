@@ -66,7 +66,8 @@ for char in data:
   cursor.execute(sql, datosChar)
   
 
-# verifica la correcta ejecución de los cambios solicitados.
+# Verifica la correcta ejecución de los cambios solicitados.
+# Guarda los cambios realizados
 connection.commit()
 print("Inserción de Datos exitoso !!!")
 # Cerrar la conexión y el cursor.
