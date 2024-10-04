@@ -38,6 +38,6 @@ Tomo tres datos de los elementos registrados en la URL.
 ## Author:
 
 - Pettinari Gabriel Alejandro
-- [@Gabriel Pettinari](https://github.com/GabrielPetty)
+- [@Gabriel Pettinari](https://github.com/GabrielPettyA)
 
 
