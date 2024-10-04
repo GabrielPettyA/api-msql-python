@@ -1,3 +1,5 @@
+## COMO OBTENER UNA URL EN LA RED, TOMAR SUS DATOS Y ARCHIVARLOS EN UNA DB.
+
 # Desarrollo Sobre Redes        
 
 - Se obtiene la URL a implementar para obtención de datos,
